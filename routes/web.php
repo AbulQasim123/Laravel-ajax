@@ -151,5 +151,5 @@ Route::controller(DependentController::class)->group(function(){
     Route::post('/Multicheckbox-data', 'MultiCheckbox')->name('Multicheckbox.data');    
 
         // Increment and show count of download images
-    Route::get('/downloadimage-data', 'DownloadImage')->name('downloadimage.data');    
+    Route::get('/downloadimage-data', 'DownloadImage')->name('downloadimage.data');
 });
