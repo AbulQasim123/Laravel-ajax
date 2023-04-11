@@ -320,7 +320,6 @@
                         <label for="hobey">Select Hobey</label>
                         <select name="hobey[]" multiple="multiple"  id="hobey" 
                         class="form-control">
-                            <option value="">Select Hobey</option>
                             <option value="Cricket">Cricket</option>
                             <option value="Singing">Singing</option>
                             <option value="Playing">Playing</option>

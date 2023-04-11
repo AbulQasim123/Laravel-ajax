@@ -110,7 +110,7 @@ class DependentController extends Controller
             dd($request->all());
         }
     }
-
+        // Autocomplete
     public function Autocomplete(Request $request){
         if ($request->ajax()) {
             $data = Student::where('firstname', 'LIKE', $request->value.'%')->get();
