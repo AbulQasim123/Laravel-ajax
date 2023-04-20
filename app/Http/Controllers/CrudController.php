@@ -19,7 +19,7 @@ class CrudController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *p
      * @return \Illuminate\Http\Response
      */
     public function index()
