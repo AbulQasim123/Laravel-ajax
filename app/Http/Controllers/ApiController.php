@@ -20,7 +20,11 @@ class ApiController extends Controller
         return DB::table('livetable')->find($id);
     }
     public function ApibyModel($id = null){
-        return $id?DynamicField::find($id):DynamicField::all();
+        $result = $id?DynamicField::find($id):DynamicField::all();
+        if($result)
+            return $result;
+        else
+        return ['result'=> 'Data Not Found'];
     }
         // Post data by api
     public function PostApi(Request $req){
@@ -37,22 +41,32 @@ class ApiController extends Controller
         // Update data by Api
     public function UpdateApi(Request $req){
         $postdata = DynamicField::find($req->id);
-        $postdata->firstname = $req->firstname;
-        $postdata->lastname = $req->lastname;
-        $result = $postdata->save();
-        if ($result) {
-            return ['return'=> 'Data has been Updated'];
+        if($postdata){
+            $postdata->firstname = $req->firstname;
+            $postdata->lastname = $req->lastname;
+            $result = $postdata->save();
+            if ($result) {
+                return ['return'=> 'Data has been Updated'];
+            }else{
+                return ['return'=> 'Updation Failed'];
+            }
         }else{
-            return ['return'=> 'Updation Failed'];
+            return ['return'=> 'Record Not Found'];
         }
+        
     }
         // Delete data by api
     public function DeleteApi($id){
-        $result = DynamicField::find($id)->delete();
-        if ($result) {
-            return ['return'=> 'Data has been Deleted'];
+        $existId = DynamicField::find($id);
+        if ($existId) {
+            $result = DynamicField::where('id',$id)->delete();
+            if($result){
+                return ['return'=> 'Data has been Deleted'];
+            }else{
+                return ['return'=> 'Deletion Failed'];
+            }
         }else{
-            return ['return'=> 'Deletion Failed'];
+            return ['return'=> 'Record Not Found'];
         }
     }
         // Search Data by Api
