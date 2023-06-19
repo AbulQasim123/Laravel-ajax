@@ -196,6 +196,7 @@ return [
         \Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -213,7 +214,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => \Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'DataTables' => Yajra\DataTables\Facades\DataTables::class
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
 
 ];

@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->timestamps();
+            // $table->nullableTimestamps();
+                
+                // Use instead of  $table->timestamps()
+            // $table->timestamp('created_at')->useCurrent();
+            // $table->timestamp('updated_at')->useCurrentOnUpdate();
+
         });
     }
 

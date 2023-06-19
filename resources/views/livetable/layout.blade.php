@@ -249,7 +249,6 @@
 					dataType: 'json',
 					success: function(result){
 						var output = '';
-						
 						$('#total_data').text(result.length);
 						$('#NoRecordfount').html('');
 						
@@ -265,7 +264,6 @@
 						}
 						$('#fetchrangedata').html(output);
 					}
-					
 				});
 			}
 

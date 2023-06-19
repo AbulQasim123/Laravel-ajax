@@ -203,7 +203,7 @@ class LiveTableController extends Controller
         ]);
         $data = array(
             'sendname' => $req->sendname,
-            // 'sendemail' => $req->sendemail,
+            'sendemail' => $req->sendemail,
             'sendmessage' => $req->sendmessage,
         );
         Mail::to($req->sendemail)->send(new Sendmail($data));

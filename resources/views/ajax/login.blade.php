@@ -1,11 +1,15 @@
 @extends('ajax.master')
 @section('content')
-    <form action="/login" method="post" class="my-2">
-        @csrf
-        <input type="text" name="username" placeholder="Username"><br><br>
-        <input type="text" name="password" placeholder="Password"><br><br>
-        <input type="submit" value="Submit">
-    </form>
-
-    <span>{{ env('My_CUSTOM_VARIABLE') }}</span>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <form action="/login" method="POST" class="my-2">
+                    @csrf
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -6,6 +6,8 @@ use App\Http\Controllers\LiveTableController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\DependentController;
 use App\Http\Middleware\XSS;
+use App\Http\Controllers\UserEmailController;
+use App\Http\Controllers\LaravelBoy;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,13 @@ use App\Http\Middleware\XSS;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/* Start Laravel Boy */
+Route::controller(LaravelBoy::class)->group(function(){
+    Route::get('laravelboy', 'index');
+});
+/* End Laravel Boy */
+
 Route::controller(StudentController::class)->group(function(){
     Route::get('/','index');
     Route::get('/fetchdata','FetchData')->name('fetchdata');
@@ -29,8 +38,43 @@ Route::controller(StudentController::class)->group(function(){
 
     Route::get('fetchinselect','FetchInSelectBox')->name('fetchinselect.data');
     Route::get('fetchdatawithselectbox','fetchdatawithselectbox')->name('fetchdatawithselectbox.data');
+
+    // Load More Data using Ajax in Laravel
+    Route::get('loadmore', 'loadMore')->name('load-more');
+    // Resize Image in Laravel
+    Route::post('resize-image', 'resizeImage')->name('resize.img');
+
+
+    // Send OTP on Mobile number
+    Route::post('otp-send','sendOTP')->name('otp.send');
+    // Load verification OTP page 
+    Route::get('otp-verification/{user_id}','loadVerification')->name('otp.verification');
+    Route::post('otp-login','loginWithOtp')->name('otp.login');
+
+    // If login success with OTP
+    Route::get('home','Home')->name('home');
+    Route::get('logout','Logout')->name('logout');
 });
 
+// OTP Send & OTP Verification from mail
+Route::controller(UserEmailController::class)->group(function(){
+    Route::post('send-mail','sendMailOtp')->name('sendMail.otp');
+    Route::get('/verification/{id}','verification');
+    Route::post('/verified','verifiedOtp')->name('verified.Otp');
+
+    // User Login
+    Route::get('/load-login','loadLogin')->name('load.login');
+    Route::post('/post-login','postLogin')->name('post.Login');
+    // Load Dashboard
+    Route::get('/dashboard','loadDashboard')->name('dashboard.emailverified');
+    // // Load Login
+    // Route::get('/load-login',function(){
+    //     return redirect('/load-login');
+    // });
+    
+    // Resend OTP
+    Route::get('/resend-otp','resendOtp')->name('resend.Otp');
+});
 
 // Route::delete('deletestudent',[StudentController::class,'deleteStudent'])->name('deletestudent.data');
 

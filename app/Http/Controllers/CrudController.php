@@ -312,5 +312,16 @@ class CrudController extends Controller
             }
         */
     }
-
+    
+    // Laravel Boy
+    // This is call by API in the Thunder Client
+    public function softDelete(){
+        // Crud::where('id', '>', 1)->delete();
+        // Crud::destroy([1,2,3]);
+        // Crud::query()->delete();
+        // Crud::truncate();
+        // Crud::onlyTrashed()->get();
+        // Crud::withTrashed()->get();
+        // return "Restored";
+    }
 }
