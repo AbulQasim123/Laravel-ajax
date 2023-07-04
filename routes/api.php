@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllEloquentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
@@ -43,4 +44,10 @@ Route::controller(LaravelBoy::class)->group(function () {
 // Laravel Boy
 Route::controller(CrudController::class)->group(function () {
     Route::get('soft-delete', 'softDelete');
+});
+
+// Hasmany Relation Ship
+Route::controller(AllEloquentController::class)->group(function () {
+    Route::get('get-data-hasmany', 'getDataHasMany');
+    Route::get('get-data-hasthrough', 'getDataHasTrough');
 });

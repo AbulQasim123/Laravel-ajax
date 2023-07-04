@@ -14,4 +14,8 @@ class Crud extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = ['firstname','lastname','image'];
     protected $dates = ['deleted_at'];
+
+    public function purneable(){
+        return $this->where('email', null);
+    }
 }

@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use App\Http\Requests\LaravelBoyRequest;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\RateLimiter;
 use App\Models\Crud;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\LaravelBoyRequest;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\RateLimiter;
 
 class LaravelBoy extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         /* All About response() */
         // return response('Hello world')->header('userName','Qasim')->header('Country','India');
         // return response('Hello world')->withHeaders([
@@ -36,7 +40,7 @@ class LaravelBoy extends Controller
         // return response()->streamDownload(function(){
         //     echo "Hello world";
         // },'test.text');
-        
+
         /* 
             This is woking from AppServiceProvider.php 
             written method formatName here
@@ -102,7 +106,7 @@ class LaravelBoy extends Controller
         // $selectOnly = $role == 'admin' ? ['*'] : ['firstname','lastname'];
         // $posts = Crud::select($selectOnly)->get();
         // return response()->json(compact('posts'));
-        
+
         // $posts = Crud::get();
         // $posts->setHidden(['firstname','image']);
         // return response()->json(compact('posts'));
@@ -164,47 +168,138 @@ class LaravelBoy extends Controller
 
         // $env_values = env('APP_KEYS');
         // return response()->json(compact('env_values'));
-        
+
         // $env_values = config('services.laravel_boy.key');
         // return response()->json(compact('env_values'));
 
         /* Learn storage by creating a simple file explorer simulator */
 
-            // Create a new folder
+        // Create a new folder
         // return Storage::makeDirectory('laravel-boy');
-            // store file inside this folder
+        // store file inside this folder
         // $file = $request->file('avatar');
         // return Storage::putFile('laravel-boy', $file);
 
         // $file = $request->file('avatar');
         // $name = 'Qasim.'.$file->extension();
         // return Storage::putFileAs('laravel-boy', $file, $name);
-            // copy a file to another directory
+        // copy a file to another directory
         // return Storage::copy('laravel-boy/Qasim.jpg','public/Qasim.jpg');
-            // cut a file to another directory
+        // cut a file to another directory
         // return Storage::move('laravel-boy/Qasim.jpg','public/Qasim.jpg');
-            
-            // list file or sub file
+
+        // list file or sub file
         // $files = Storage::files('public');
         // dd($files);
         // $files = Storage::allFiles('public');
         // dd($files);
-            // show a file
+        // show a file
         // $files = Storage::get('public/Qasim.jpg');
         // return Storage::put('laravel-boy/test.jpg', $files);
-            // download a file
+        // download a file
         // return Storage::download('laravel-boy/test.jpg');
-            // delete a file
+        // delete a file
         // return Storage::delete('laravel-boy/test.jpg');
         // if (Storage::exists('laravel-boy/test.jpg')) {
         //     return Storage::delete('laravel-boy/test.jpg');
         // }
         // return "no file found";
-            // delete a folder
-        return Storage::deleteDirectory('laravel-boy');
+        // delete a folder
+        // return Storage::deleteDirectory('laravel-boy');
 
-        
+        /*
+            Laravel advance query | implementation any scoreboard in clean and short way.
+        */
 
+            // Sql Raw query
+        // "Select name, score
+        // DENSE_RAND() OVER(ORDER BY score DESC) as position
+        // from students ORDER BY score desc";
+
+            // Laravel Raw query
+        // $students = Student::selectRaw('name,score, DENSE_RAND() OVER(ORDER BY score DESC) as position')->orderBy('score','desc')->get();
+
+        /*
+            Laravel Collection | Take care about this logical error.
+        */
+        $emptyArray = []; //false;
+        $emptyCollection = collect([]);
+
+        // if (!$emptyArray) {
+        //     return "Array is empty";
+        // }
+
+        // if(!$emptyCollection->count()){
+        //     return "Array is empty";
+        // }
+
+        // if(!$emptyCollection->isNotEmpty()){
+        //     return "Array is empty";
+        // }
+
+        // if($emptyCollection->empty()){
+        //     return "Array is empty";
+        // }
+
+        // if($emptyCollection->isEmpty()){
+        //     return "Array is empty";
+        // }else{
+        //     return "Done";
+        // }
+
+        /* Laravel validation | Clean and professional way to validate password */
+            // This code is written validationRequestFile for password field
+        // public function rules(){
+        //     return [
+        //         'password' => [Password::min(5)->letters()->mixedCase()->symbols()]
+        //     ];
+        // }
         
+        /* Laravel tip | download or show file in response */
+        // $path = Storage::path('public/Qasim.jpg');tommarow
+        // dd($path);
+        // return response()->file($path);
+        // return response()->download($path,'Laravel_boy_image');
+
+        /* Laravel Advance tip | create custom helper method for fast development */
+        // return dd(now());
+        /* 
+            This function are define custom helper.php file. tomorrow(), isLoggedIn()
+        */
+        // return dd(tomorrow());
+        // return dd(isLoggedIn());
+
+        /* Laravel tip | How to use whenFilled method instead of if() */
+        // $user = null;
+        // if ($request->filled('name')) {
+        //     $user = ucfirst($request->name);
+        // }
+
+        // $user = $request->filled('name') ? ucfirst($request->name) : null;
+        // $user = $request->whenFilled('name', function($val){
+        //     return ucfirst($val);
+        // }, function(){
+        //     return null;
+        // });
+
+        // $user = $request->whenFilled('name', fn($val)=>ucfirst($val), fn()=>null);
+        // dd($user);
+
+        // $name = 'qasim';
+        // $ucFirst = mb_strtoupper(mb_substr($name, 0, 1));
+        // dd($ucFirst);
+
+        /* Laravel tip | Fatest way to send email on your local server */
+        // Mail::to('qasim.cloudzurf@gmail.com')->send(new TestMail(12345));
+        // return 'sent';
+
+        /* Laravel Advance tip | Custom Order */
+        // $users = Post::orderByRaw("FIELD('role','super admin','admin','editor')")->get(['role']);
+        // $users = Post::orderByRaw("FIELD('status',1,2,0)")->get(['status']);
+        // return $users;
+        
+        // dd($request->str('name')->headline()->finish('.')->value());
+
     }
+    
 }

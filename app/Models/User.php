@@ -11,10 +11,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Casts\HumanDateCast;
+use Illuminate\Database\Eloquent\Prunable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Prunable;
 
     /**
      * The attributes that are mass assignable.
@@ -45,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'created_at' => HumanDateCast::class.':short'
     ];
+
+    public function prunable()
+    {
+        return $this->where('email_verified_at', null);
+    }
 }
