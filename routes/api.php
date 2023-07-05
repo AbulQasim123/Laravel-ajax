@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AllEloquentController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\LaravelBoy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +24,13 @@ Route::get('/student', function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-// Api Controller 
+// Api Controller
 // Get Method
 Route::get('apidataone', [ApiController::class, 'ApiDataone']);
 Route::get('apidatatwo/{id}', [ApiController::class, 'ApiDatatwo']);
 Route::get('apibymodel/{id?}', [ApiController::class, 'ApibyModel']);
 
-// Post Method 
+// Post Method
 Route::post('postapi', [ApiController::class, 'PostApi']);
 Route::put('updateapi', [ApiController::class, 'UpdateApi']);
 Route::delete('deleteapi/{id}', [ApiController::class, 'DeleteApi']);

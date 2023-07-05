@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\AddOrder;
 use App\Models\AddProduct;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AddOrderSeeder extends Seeder
@@ -21,58 +20,58 @@ class AddOrderSeeder extends Seeder
 
         $addOrder = [
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             [
-                'product_id' => $productIds[array_rand($productIds)]
+                'product_id' => $productIds[array_rand($productIds)],
             ],
             // Add more order data here
         ];

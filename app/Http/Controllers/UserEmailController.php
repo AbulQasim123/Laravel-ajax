@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Models\UserEmailVerification;
 use App\Models\UserEmailRegistration;
+use App\Models\UserEmailVerification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class UserEmailController extends Controller
 {
@@ -20,7 +20,7 @@ class UserEmailController extends Controller
             [
                 'name' => 'required|string|min:3',
                 'email' => 'required|email|max:100|unique:users',
-                'password' => 'required|confirmed|min:6|max:16'
+                'password' => 'required|confirmed|min:6|max:16',
             ],
             [
                 'name.required' => 'The Name is required?',
@@ -37,19 +37,19 @@ class UserEmailController extends Controller
             ]
         )->validate();
 
-
         $user = new UserEmailRegistration;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect('/verification/' . $user->id)->with('success','Registration successfull. we have sent an OTP on your email.Check your email and Verify your Email.');
+        return redirect('/verification/'.$user->id)->with('success', 'Registration successfull. we have sent an OTP on your email.Check your email and Verify your Email.');
     }
 
     // Send OTP
-    public function sendOTP($user){
-        $otp = rand(100000,999999);
+    public function sendOTP($user)
+    {
+        $otp = rand(100000, 999999);
         $time = time();
 
         UserEmailVerification::updateOrCreate(
@@ -63,41 +63,44 @@ class UserEmailController extends Controller
 
         $data['email'] = $user->email;
         $data['title'] = 'Mail Verification';
-        $data['body'] = 'Your OTP is '. $otp;
+        $data['body'] = 'Your OTP is '.$otp;
 
-        Mail::send('ajax.mailotpverifaication',['data' => $data], function($message) use ($data){
+        Mail::send('ajax.mailotpverifaication', ['data' => $data], function ($message) use ($data) {
             $message->to($data['email'])->subject($data['title']);
         });
     }
 
     // verified OTP
-    public function verifiedOtp(Request $request){
-        $user = UserEmailRegistration::where('email',$request->email)->first();
-        $otpData = UserEmailVerification::where('email',$request->email)->first();
+    public function verifiedOtp(Request $request)
+    {
+        $user = UserEmailRegistration::where('email', $request->email)->first();
+        $otpData = UserEmailVerification::where('email', $request->email)->first();
 
-        if (!$otpData) {
+        if (! $otpData) {
             return response()->json(['status' => false, 'msg' => 'You entered wrong OTP']);
-        }else{
+        } else {
             $currentTime = time();
             $time = $otpData->created_at;
-            if ($currentTime >= $time && $time >= $currentTime - (90+5)) {  // 90 minutes
-                UserEmailRegistration::where('id', $user->id )->update([
-                    'is_verified' => 1
+            if ($currentTime >= $time && $time >= $currentTime - (90 + 5)) {  // 90 minutes
+                UserEmailRegistration::where('id', $user->id)->update([
+                    'is_verified' => 1,
                 ]);
+
                 return response()->json(['status' => true, 'msg' => 'Mail has been Verified']);
-            }else{
-                return response()->json(['status' => false,'msg'=> 'Your OTP has been Expired']);
+            } else {
+                return response()->json(['status' => false, 'msg' => 'Your OTP has been Expired']);
             }
         }
     }
 
     // User Login
-    public function postLogin(Request $request){
+    public function postLogin(Request $request)
+    {
         $validator = Validator::make(
             $request->all(),
             [
                 'email' => 'required|email',
-                'password' => 'required|min:6|max:16'
+                'password' => 'required|min:6|max:16',
             ],
             [
                 'email.required' => 'The email is required?',
@@ -108,60 +111,69 @@ class UserEmailController extends Controller
             ]
         )->validate();
 
-        $userCredential = $request->only('email','password');
-        
-        $userData = UserEmailRegistration::where('email',$request->email)->first();
+        $userCredential = $request->only('email', 'password');
+
+        $userData = UserEmailRegistration::where('email', $request->email)->first();
         // dd($userData);
-        if($userData && $userData->is_verified == 0){
+        if ($userData && $userData->is_verified == 0) {
             $this->sendOtp($userData);
-            return redirect('/verification/' . $userData->id);
-        }else if(Auth::guard('custom')->attempt($userCredential)){
+
+            return redirect('/verification/'.$userData->id);
+        } elseif (Auth::guard('custom')->attempt($userCredential)) {
             // return view('ajax.dashboard');
             return redirect()->route('dashboard.emailverified');
-        }else{
-            return back()->with('error','Username & Password is incorrect');
+        } else {
+            return back()->with('error', 'Username & Password is incorrect');
         }
     }
 
     // Load Dashboard
-    public function loadDashboard(){
-        if(Auth::user()){
+    public function loadDashboard()
+    {
+        if (Auth::user()) {
             return view('ajax.dashboard');
         }
+
         return redirect()->route('load.login');
     }
-    
+
     // Load Login
-    public function loadLogin(){
-        if(Auth::user()){
+    public function loadLogin()
+    {
+        if (Auth::user()) {
             return redirect()->route('dashboard.emailverified');
         }
+
         return view('ajax.emailverificationlogin');
     }
 
     // Resend OTP
-    public function resendOtp(Request $request){
+    public function resendOtp(Request $request)
+    {
         $user = UserEmailRegistration::where('email', $request->email)->first();
         $otpData = UserEmailVerification::where('email', $request->email)->first();
         $currentTime = time();
         $time = $otpData->created_at;
 
-        if ($currentTime >= $time && $time >= $currentTime - (90+5)) { // 90 Seconds
+        if ($currentTime >= $time && $time >= $currentTime - (90 + 5)) { // 90 Seconds
             return response()->json(['status' => false, 'msg' => 'Please Try after some time']);
-        }else{
+        } else {
             $this->sendOTP($user); // Send OTP
+
             return response()->json(['status' => true, 'msg' => 'OTP has been Sent']);
         }
     }
 
     // Load email verification page
-    public function verification($id){
+    public function verification($id)
+    {
         $user = UserEmailRegistration::whereId($id)->first();
-        if (!$user || $user->is_verified == 1) {
+        if (! $user || $user->is_verified == 1) {
             return redirect('/');
         }
         $email = $user->email;
         $this->sendOTP($user); // Send OTP
-        return view('ajax.verificationmail',compact('email'));
+
+        return view('ajax.verificationmail', compact('email'));
     }
 }

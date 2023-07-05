@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use App\Models\Crud;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\LaravelBoyRequest;
-use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Password;
 
 class LaravelBoy extends Controller
 {
@@ -41,8 +39,8 @@ class LaravelBoy extends Controller
         //     echo "Hello world";
         // },'test.text');
 
-        /* 
-            This is woking from AppServiceProvider.php 
+        /*
+            This is woking from AppServiceProvider.php
             written method formatName here
         */
         // $data = [
@@ -111,12 +109,12 @@ class LaravelBoy extends Controller
         // $posts->setHidden(['firstname','image']);
         // return response()->json(compact('posts'));
 
-        /* 
+        /*
             Laravel Advance Eloquent | Perform complex queries on json columns
-            
-            if the data saved in the table column JSON format 
+
+            if the data saved in the table column JSON format
             like eg:)
-            First column  =  ["reading","writing"];  
+            First column  =  ["reading","writing"];
             Second column =  ["reading"];
 
                 // we can retrive following this way
@@ -127,7 +125,7 @@ class LaravelBoy extends Controller
 
 
             like eg:)
-            First column = 
+            First column =
             {
                 "info":{
                     "hobbies":[
@@ -137,7 +135,7 @@ class LaravelBoy extends Controller
                 },
                 "sport":"football"
             }
-            Second column = 
+            Second column =
             {
                 "info":{
                     "hobbies":[
@@ -161,7 +159,7 @@ class LaravelBoy extends Controller
             return Crud::find(2)->data;
             return json_decode(Crud::find(2)->data)
             return json_decode(Crud::find(2)->data,true)
-            
+
         */
 
         /* Don't use env() directly with reason */
@@ -211,12 +209,12 @@ class LaravelBoy extends Controller
             Laravel advance query | implementation any scoreboard in clean and short way.
         */
 
-            // Sql Raw query
+        // Sql Raw query
         // "Select name, score
         // DENSE_RAND() OVER(ORDER BY score DESC) as position
         // from students ORDER BY score desc";
 
-            // Laravel Raw query
+        // Laravel Raw query
         // $students = Student::selectRaw('name,score, DENSE_RAND() OVER(ORDER BY score DESC) as position')->orderBy('score','desc')->get();
 
         /*
@@ -248,13 +246,13 @@ class LaravelBoy extends Controller
         // }
 
         /* Laravel validation | Clean and professional way to validate password */
-            // This code is written validationRequestFile for password field
+        // This code is written validationRequestFile for password field
         // public function rules(){
         //     return [
         //         'password' => [Password::min(5)->letters()->mixedCase()->symbols()]
         //     ];
         // }
-        
+
         /* Laravel tip | download or show file in response */
         // $path = Storage::path('public/Qasim.jpg');tommarow
         // dd($path);
@@ -263,7 +261,7 @@ class LaravelBoy extends Controller
 
         /* Laravel Advance tip | create custom helper method for fast development */
         // return dd(now());
-        /* 
+        /*
             This function are define custom helper.php file. tomorrow(), isLoggedIn()
         */
         // return dd(tomorrow());
@@ -297,9 +295,8 @@ class LaravelBoy extends Controller
         // $users = Post::orderByRaw("FIELD('role','super admin','admin','editor')")->get(['role']);
         // $users = Post::orderByRaw("FIELD('status',1,2,0)")->get(['status']);
         // return $users;
-        
+
         // dd($request->str('name')->headline()->finish('.')->value());
 
     }
-    
 }

@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\UsersOtp;
-use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
-
 
 class StudentController extends Controller
 {
@@ -33,27 +30,29 @@ class StudentController extends Controller
             echo json_encode($data);
         }
     }
+
     public function AddStudents(Request $req)
     {
-        $rules = array(
+        $rules = [
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email|unique:students,email',
             'phone' => 'required',
-        );
+        ];
         $error = Validator::make($req->all(), $rules);
         if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $form_data = array(
+        $form_data = [
             'firstname' => $req->firstname,
             'lastname' => $req->lastname,
             'email' => $req->email,
-            'phone' => $req->phone
-        );
+            'phone' => $req->phone,
+        ];
 
         Student::create($form_data);
+
         return response()->json(['success' => 'Data Added Succssfully']);
     }
 
@@ -61,34 +60,35 @@ class StudentController extends Controller
     {
         if ($req->ajax()) {
             $data = Student::findOrFail($req->id);
+
             return response()->json(['data' => $data]);
         }
     }
 
     public function UpdateData(Request $req)
     {
-        $rules = array(
+        $rules = [
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-        );
+        ];
         $error = Validator::make($req->all(), $rules);
         if ($error->fails()) {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $form_data = array(
+        $form_data = [
             'firstname' => $req->firstname,
             'lastname' => $req->lastname,
             'email' => $req->email,
-            'phone' => $req->phone
-        );
+            'phone' => $req->phone,
+        ];
 
         Student::whereId($req->hidden_id)->update($form_data);
+
         return response()->json(['success' => 'Data Updated Succssfully']);
     }
-
 
     // This code is correct with jquery
     // public function deleteStudent(Request $req)
@@ -105,6 +105,7 @@ class StudentController extends Controller
         if (request()->ajax()) {
             $students = Student::find($id);
             $students->delete();
+
             return response()->json(['success' => 'Record has been Deleted']);
         }
     }
@@ -126,14 +127,15 @@ class StudentController extends Controller
             if ($exist_email) {
                 return response()->json(['errors' => 'This Email already Exists']);
             }
-            $form_data = array(
+            $form_data = [
                 'first_name' => $request->get('_firstname'),
                 'last_name' => $request->get('_lastname'),
                 'email' => $request->get('_email'),
                 'password' => Hash::make($request->get('_password')),
                 'website' => $request->get('_website'),
-            );
+            ];
             DB::table('tbl_register')->insert($form_data);
+
             return response()->json(['success' => 'Data Added']);
         }
     }
@@ -163,10 +165,12 @@ class StudentController extends Controller
         $user = '';
         if ($request->ajax()) {
             foreach ($datas as $data) {
-                $user .= '<li><b>Name :</b>' . $data->name . '<b>Email:</b>' . $data->email . ',' . $data->mobile_no . '</li>';
+                $user .= '<li><b>Name :</b>'.$data->name.'<b>Email:</b>'.$data->email.','.$data->mobile_no.'</li>';
             }
+
             return $user;
         }
+
         return view('ajax.loadmore', compact('datas'));
     }
 
@@ -175,19 +179,20 @@ class StudentController extends Controller
     {
         // dd('Hello');
         $this->validate($request, [
-            'image' => 'required|image|mimes:png,jpg,gif,jpeg,svg|max:2048'
+            'image' => 'required|image|mimes:png,jpg,gif,jpeg,svg|max:2048',
         ]);
         $image = $request->file('image');
-        $input['imagename'] = uniqid() . '.' . $image->getClientOriginalExtension();
+        $input['imagename'] = uniqid().'.'.$image->getClientOriginalExtension();
         // Resize Image
         $resizeImage = public_path('/resizeImage');
         $img = Image::make($image->getRealPath());
         $img->resize(150, 200, function ($constraints) {
             $constraints->aspectRatio();
-        })->save($resizeImage . '/' . $input['imagename']);
+        })->save($resizeImage.'/'.$input['imagename']);
         // Orignal Image
         $orignalImage = public_path('/orignalImage');
         $image->move($orignalImage, $input['imagename']);
+
         return back()->with('success', 'Image uploaded successfully')->with('imagename', $input['imagename']);
     }
 
@@ -218,13 +223,16 @@ class StudentController extends Controller
             if ($userOtp) {
                 $user = $userOtp->sendSMS($request->mobile_no);
                 $userId = $userOtp->user_id; // Get the user_id from $userOtp
+
                 return response()->json(['userId' => $userId, 'success' => 'OTP has been sent on your mobile number']);
             } else {
                 return redirect()->back()->with('error', 'Failed to Send OTP');
             }
         }
+
         return response()->json(['error' => $validator->errors()]);
     }
+
     public function generateOTP($mobile_no)
     {
         $user = User::where('mobile_no', $mobile_no)->first();
@@ -243,15 +251,16 @@ class StudentController extends Controller
         return UsersOtp::create([
             'user_id' => $user->id,
             'user_otp' => rand(123456, 999999),
-            'expire_at' => $now->addMinutes(5)
+            'expire_at' => $now->addMinutes(5),
         ]);
     }
 
-    // Load verification OTP page 
+    // Load verification OTP page
     public function loadVerification($user_id)
     {
         return view('ajax.verification')->with(['user_id' => $user_id]);
     }
+
     // Login with OTP
     public function loginWithOtp(Request $request)
     {
@@ -259,7 +268,7 @@ class StudentController extends Controller
             $request->all(),
             [
                 'user_otp' => 'required|digits:6',
-                'user_id' => 'exists:users,id'
+                'user_id' => 'exists:users,id',
             ],
             [
                 'user_otp.required' => 'The OTP is required?',
@@ -267,14 +276,14 @@ class StudentController extends Controller
             ]
         )->validate();
 
-        if (!User::where('id', $request->user_id)->exists()) {
+        if (! User::where('id', $request->user_id)->exists()) {
             return redirect()->back()->with('error', 'User not found');
         }
         $userOtp = UsersOtp::where('user_id', $request->user_id)->where('user_otp', $request->user_otp)->first();
         $now = now();
-        if (!$userOtp) {
+        if (! $userOtp) {
             return redirect()->back()->with('error', 'Your OTP is incorrect!');
-        } else if ($userOtp && $now->isAfter($userOtp->expire_at)) {
+        } elseif ($userOtp && $now->isAfter($userOtp->expire_at)) {
             return redirect()->back()->with('error', 'Your OTP has been Expired!');
         }
 
@@ -284,6 +293,7 @@ class StudentController extends Controller
                 'expire_at' => now(),
             ]);
             Auth::login($user);
+
             return redirect()->route('home');
         }
     }
@@ -294,11 +304,14 @@ class StudentController extends Controller
         if (Auth::check()) {
             return view('ajax.home');
         }
+
         return redirect()->route('load-more');
     }
+
     public function logout()
     {
         Auth::logout();
+
         return redirect()->route('load-more');
     }
 }

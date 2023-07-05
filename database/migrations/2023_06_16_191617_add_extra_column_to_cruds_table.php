@@ -12,10 +12,10 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {   
+    {
         // Add Extra Columns into cruds Table
         Schema::table('cruds', function (Blueprint $table) {
-            $table->after('lastname', function() use ($table){
+            $table->after('lastname', function () use ($table) {
                 $table->string('email')->nullable();
                 $table->string('gender')->nullable();
                 $table->string('phone')->nullable();

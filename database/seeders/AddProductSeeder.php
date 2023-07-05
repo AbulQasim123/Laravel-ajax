@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AddCategory;
 use App\Models\AddProduct;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AddProductSeeder extends Seeder
@@ -16,7 +14,7 @@ class AddProductSeeder extends Seeder
      */
     public function run()
     {
-        
+
         $addProducts = [
             [
                 'categories_id' => 1,

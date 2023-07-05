@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('mobile_no')->after('email');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

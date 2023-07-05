@@ -4,14 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use Illuminate\Database\Eloquent\Casts\AsStringable;
+use App\Casts\HumanDateCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Casts\HumanDateCast;
-use Illuminate\Database\Eloquent\Prunable;
 
 class User extends Authenticatable
 {
@@ -44,7 +42,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => HumanDateCast::class.':short'
+        'created_at' => HumanDateCast::class.':short',
     ];
 
     public function prunable()

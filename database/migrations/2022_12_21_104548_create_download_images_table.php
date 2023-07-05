@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('path');
-            $table->string('count','0');
+            $table->string('count', '0');
             $table->timestamps();
         });
     }

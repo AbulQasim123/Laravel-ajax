@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class UserEmailVerification extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
 
-    protected $fillable = [ 
+    protected $fillable = [
         'email',
         'otp',
-        'created_at'
+        'created_at',
     ];
 }

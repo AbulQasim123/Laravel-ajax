@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -19,6 +18,7 @@ class Sendmail extends Mailable
      * @return void
      */
     public $data;
+
     public function __construct($data)
     {
         $this->data = $data;
@@ -36,7 +36,8 @@ class Sendmail extends Mailable
         );
     }
 
-    public function build(){
+    public function build()
+    {
         return $this->from('hellolara786@gmail.com')->subject('New Customer Equiry')->view('livetable.dynamic_email')->with('data', $this->data);
     }
 
@@ -45,7 +46,7 @@ class Sendmail extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    
+
     // public function content()
     // {
     //     return new Content(

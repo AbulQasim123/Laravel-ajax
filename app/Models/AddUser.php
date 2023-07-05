@@ -10,7 +10,8 @@ class AddUser extends Model
     use HasFactory;
 
     // hasMany nested Relationship
-    public function posts(){
-        return $this->hasMany(AddPost::class,'user_id','id');
+    public function posts()
+    {
+        return $this->hasMany(AddPost::class, 'user_id', 'id');
     }
 }

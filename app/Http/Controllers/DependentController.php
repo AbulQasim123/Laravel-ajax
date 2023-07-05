@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use App\Models\Student;
-use App\Models\Image;
-use App\Models\User;
 use App\Models\DownloadImage;
-use Illuminate\Support\Facades\DB;
+use App\Models\Image;
+use App\Models\Student;
+use App\Models\User;
 use DataTables;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class DependentController extends Controller
@@ -18,16 +18,16 @@ class DependentController extends Controller
     {
         $response = Http::withHeaders([
             'api-token' => 'da7wSFRUI-x85RpAnD73vkn96sFwan3X2D5dDhUF996yjmecQnMFrvZKYn4BNidx5mI',
-            'user-email' => 'abulqasimansari842@gmail.com'
+            'user-email' => 'abulqasimansari842@gmail.com',
         ])->get('https://www.universal-tutorial.com/api/getaccesstoken');
-        $data = (array)json_decode($response->body());
+        $data = (array) json_decode($response->body());
         $auth_token = $data['auth_token'];
         // echo $auth_token;
 
         $countryresponse = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $auth_token,
+            'Authorization' => 'Bearer '.$auth_token,
         ])->get('https://www.universal-tutorial.com/api/countries/');
-        $countries = (array)json_decode($countryresponse->body());
+        $countries = (array) json_decode($countryresponse->body());
         // echo "<pre>";
         // print_r($data);
         // echo "</pre>";
@@ -52,18 +52,20 @@ class DependentController extends Controller
     public function GetStates(Request $request)
     {
         $stateresponse = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $request->token,
-        ])->get('https://www.universal-tutorial.com/api/states/' . $request->country);
+            'Authorization' => 'Bearer '.$request->token,
+        ])->get('https://www.universal-tutorial.com/api/states/'.$request->country);
         $states = $stateresponse->body();
+
         return $states;
     }
 
     public function GetCities(Request $request)
     {
         $cityresponse = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $request->token,
-        ])->get('https://www.universal-tutorial.com/api/cities/' . $request->state);
+            'Authorization' => 'Bearer '.$request->token,
+        ])->get('https://www.universal-tutorial.com/api/cities/'.$request->state);
         $cities = $cityresponse->body();
+
         return $cities;
     }
 
@@ -72,33 +74,40 @@ class DependentController extends Controller
     {
         $ids = $request->ids;
         Student::whereIn('id', $ids)->delete();
+
         return redirect()->back();
     }
+
     //  Delete Multiple record with checkbox by ajax method in laravel
     public function DeletewithAjax(Request $request)
     {
         if (isset($request->del_id)) {
             Student::whereIn('id', $request->del_id)->delete();
+
             return response()->json(['success' => true, 'msg' => 'Data delete successfully', 'del_id' => $request->del_id]);
         }
+
         return response()->json(['success' => false, 'msg' => 'Please Tick at least on checkbox']);
     }
+
     // Upload multiple image and save database
     public function UploadImage(Request $request)
     {
         $request->validate([
-            'images' => 'required'
+            'images' => 'required',
         ]);
         $images = [];
         foreach ($request->file('images') as $image) {
             $imagename = $image->getClientOriginalName();
-            $image->move(public_path() . '/images/', $imagename);
+            $image->move(public_path().'/images/', $imagename);
             $images[] = $imagename;
         }
         $images = json_encode($images);
         Image::create(['images' => $images]);
+
         return redirect()->back()->with('suc-img', 'Upload successfully');
     }
+
     // skip and take method in laravel
     public function fetchdatafromdatabase()
     {
@@ -119,33 +128,37 @@ class DependentController extends Controller
             dd($request->all());
         }
     }
+
     // Autocomplete
     public function Autocomplete(Request $request)
     {
         if ($request->ajax()) {
-            $data = Student::where('firstname', 'LIKE', $request->value . '%')->get();
+            $data = Student::where('firstname', 'LIKE', $request->value.'%')->get();
             $output = '';
             if (count($data) > 0) {
                 $output .= '<ul class="list-group" style="display:block; position:relative; z-index: 1">';
                 foreach ($data as $row) {
-                    $output .= '<li class="list-group-item list_item">' . $row->firstname . '</li>';
+                    $output .= '<li class="list-group-item list_item">'.$row->firstname.'</li>';
                 }
                 $output .= '</ul>';
             } else {
                 $output .= '<li class="list-group-item">No Data Found</li>';
             }
+
             return $output;
         }
     }
+
     // Ajax Multiple searching from database
     public function FilterData(Request $request)
     {
         if ($request->ajax()) {
-            $data = Student::where('firstname', 'LIKE', '%' . $request->filter . '%')
-                ->orWhere('lastname', 'LIKE', '%' . $request->filter . '%')
-                ->orWhere('email', 'LIKE', '%' . $request->filter . '%')
-                ->orWhere('phone', 'LIKE', '%' . $request->filter . '%')
+            $data = Student::where('firstname', 'LIKE', '%'.$request->filter.'%')
+                ->orWhere('lastname', 'LIKE', '%'.$request->filter.'%')
+                ->orWhere('email', 'LIKE', '%'.$request->filter.'%')
+                ->orWhere('phone', 'LIKE', '%'.$request->filter.'%')
                 ->get();
+
             return response()->json(['data' => $data]);
         }
     }
@@ -155,26 +168,31 @@ class DependentController extends Controller
     {
         if ($request->ajax()) {
             $data = DB::table('products')->where(['category_id' => $request->selectfilter])->get();
+
             return response()->json(['data' => $data]);
         }
     }
+
     // How to upload file into database using Ajax
     public function UploadImageStore(Request $request)
     {
         $request->validate([
             'upload_image' => 'required|mimes:jpg,png,gif,jpeg|max:2048',
         ]);
-        $imgname = rand() . '.' . $request->upload_image->extension();
+        $imgname = rand().'.'.$request->upload_image->extension();
         $request->upload_image->move(public_path('images'), $imgname);
         Image::create(['images' => $imgname]);
+
         return response()->json(['success' => 'File uploaded successfully', 'class_name' => 'text-success']);
     }
+
     // Laravel Drag and drop image uploade
     public function DragandDrop(Request $request)
     {
         $image = $request->file('file');
-        $image_name = time() . $image->getClientOriginalName() . '.' . $image->extension();
+        $image_name = time().$image->getClientOriginalName().'.'.$image->extension();
         $image->move(public_path('images'), $image_name);
+
         return response()->json(['success' => $image_name]);
     }
 
@@ -182,6 +200,7 @@ class DependentController extends Controller
     {
         if ($request->ajax()) {
             $user = User::latest()->get();
+
             return DataTables::of($user)
                 ->addIndexColumn()
                 // ->addColumn('action', function($row){
@@ -196,12 +215,12 @@ class DependentController extends Controller
     // How to fetch data from api and save data into database
     public function FetchApiSaveDatabase()
     {
-        $response = Http::get("https://jsonplaceholder.typicode.com/posts");
+        $response = Http::get('https://jsonplaceholder.typicode.com/posts');
         $data = json_decode($response->body());
         foreach ($data as $row) {
-            $row = (array)$row;
+            $row = (array) $row;
             $exitsid = DB::table('api_table')->where('id', $row['id'])->first();
-            if (!$exitsid) {
+            if (! $exitsid) {
                 DB::table('api_table')->updateOrInsert(
                     [
                         'id' => $row['id'],
@@ -211,10 +230,10 @@ class DependentController extends Controller
                     ]
                 );
             } else {
-                dd("Data Already exist");
+                dd('Data Already exist');
             }
         }
-        dd("Fetched Data from Api and save done.");
+        dd('Fetched Data from Api and save done.');
     }
 
     // Ajax form validation in laravel
@@ -250,11 +269,11 @@ class DependentController extends Controller
             ]);
         if ($validator->passes()) {
             // Code goes here
-            return response()->json(['success'=>'Added new Record']);
+            return response()->json(['success' => 'Added new Record']);
         }
-        return response()->json(['error'=>$validator->errors()]);
-    }
 
+        return response()->json(['error' => $validator->errors()]);
+    }
 
     // How to store multiple select value
     public function MultiSelect(Request $request)
@@ -263,11 +282,12 @@ class DependentController extends Controller
             'enter_name' => 'required',
             'hobey' => 'required',
         ]);
-        $data = array(
+        $data = [
             'name' => $request->enter_name,
-            'hobey' => implode(",", $request->hobey)
-        );
+            'hobey' => implode(',', $request->hobey),
+        ];
         DB::table('hobey_table')->insert($data);
+
         return redirect()->back();
     }
 
@@ -278,11 +298,12 @@ class DependentController extends Controller
             'checkbox_name' => 'required',
             'language' => 'required',
         ]);
-        $data = array(
+        $data = [
             'name' => $request->checkbox_name,
             'language' => json_encode($request->language),
-        );
+        ];
         DB::table('checkbox_table')->insert($data);
+
         return redirect()->back();
     }
 

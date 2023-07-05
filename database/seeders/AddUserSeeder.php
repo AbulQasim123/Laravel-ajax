@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\AddUser;
+use Illuminate\Database\Seeder;
 
 class AddUserSeeder extends Seeder
 {
@@ -18,15 +17,15 @@ class AddUserSeeder extends Seeder
         $addUsers = [
             [
                 'name' => 'Ram kumar',
-                'email' => 'ram@example.com'
+                'email' => 'ram@example.com',
             ],
             [
                 'name' => 'Raj Singh',
-                'email' => 'raj@example.com'
+                'email' => 'raj@example.com',
             ],
             [
                 'name' => 'Rohan Singh',
-                'email' => 'rohan@example.com'
+                'email' => 'rohan@example.com',
             ],
             // Add more user data here
         ];
