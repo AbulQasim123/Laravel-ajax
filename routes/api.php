@@ -41,7 +41,7 @@ Route::post('validationapi', [ApiController::class, 'ValidationApi']);
 Route::controller(LaravelBoy::class)->group(function () {
     Route::post('laravelboy', 'index');
 });
-// Laravel Boy
+
 Route::controller(CrudController::class)->group(function () {
     Route::get('soft-delete', 'softDelete');
 });
