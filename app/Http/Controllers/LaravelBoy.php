@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
+use App\Models\AddUser;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class LaravelBoy extends Controller
 {
@@ -19,6 +21,8 @@ class LaravelBoy extends Controller
     {
         /* All About response() */
         // return response('Hello world')->header('userName','Qasim')->header('Country','India');
+
+        // return $result;
         // return response('Hello world')->withHeaders([
         //     'Username' => 'Qasim',
         //     'Country' => 'India',
@@ -220,8 +224,8 @@ class LaravelBoy extends Controller
         /*
             Laravel Collection | Take care about this logical error.
         */
-        $emptyArray = []; //false;
-        $emptyCollection = collect([]);
+        // $emptyArray = []; //false;
+        // $emptyCollection = collect([]);
 
         // if (!$emptyArray) {
         //     return "Array is empty";
@@ -297,6 +301,72 @@ class LaravelBoy extends Controller
         // return $users;
 
         // dd($request->str('name')->headline()->finish('.')->value());
+
+
+
+            /* All About Cache */
+
+        // $user = AddUser::all();
+        // Cache::put('user', $user, now()->addMinute(1));
+        // dd(Cache::get('user'));
+        // $user = AddUser::all();
+        // $jsonData = json_encode($user);
+        // Cache::put('user', $jsonData, now()->addMinute(1));
+        // dd(json_decode(Cache::get('user')));
+
+        // Cache::forever('product','Laptop');
+        // if(Cache::has('product')){
+        //     dd(Cache::get('product'));
+        // }else{
+        //     dd(null);
+        // }
+        // $product = Cache::get('product');
+        // $quantity = Cache::get('quantity',201);
+        // $carts = Cache::get('carts', function(){
+        //     return 2;
+        // });
+        // $data = ['product' => $product, 'quantity' => $quantity,'carts' => $carts];
+        // return  json_encode($data);
+
+
+        /***********  Cache Facade ***************/
+        // Cache::remember('desk', now()->addMinute(5), function () {
+        //    return 'Desktop';
+        // });
+        // // dd(Cache::get('desk'));
+        // $product = Cache::get('desk');
+        // $quantity = Cache::get('quantity',201);
+        // $data = ['product' => $product, 'quantity' => $quantity];
+        // return  json_encode($data);
+
+        // Cache::add('mobile',['Apple','Sumsung'], now()->addMinute(1));
+        // // dd(Cache::get('mobile'));
+        // $product = Cache::get('mobile');
+        // $quantity = Cache::get('quantity',201);
+        // $data = ['product' => $product, 'quantity' => $quantity];
+        // return  json_encode($data);
+
+
+        // Remove Cache Item
+        // if(Cache::has('product')){
+        //     Cache::forget('product');
+        //     dd('deleted');
+        // }
+        // Cache::forget('product');
+        // Cache::put('product', 'Laptop', 0);
+        // Cache::put('product', 'Laptop', -5);
+
+        // Clear Cache
+        // Cache::flush();
+
+        // Retrieving and Store item
+        // $value = Cache::rememberForever('shirt', function(){
+        //     return 10;
+        // });
+        // dd($value);
+
+        // Retrieving and Delete item
+        // Cache::pull('product');
 
     }
 }

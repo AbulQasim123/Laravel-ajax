@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2023 at 05:08 PM
+-- Generation Time: Jul 12, 2023 at 03:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -20,6 +20,197 @@ SET time_zone = "+00:00";
 --
 -- Database: `laravelajax`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_categories`
+--
+
+CREATE TABLE `add_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_categories`
+--
+
+INSERT INTO `add_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Cloth', NULL, NULL),
+(2, 'Jwellery', NULL, NULL),
+(3, 'Mobile', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_orders`
+--
+
+CREATE TABLE `add_orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_orders`
+--
+
+INSERT INTO `add_orders` (`id`, `product_id`, `created_at`, `updated_at`) VALUES
+(1, 8, NULL, NULL),
+(2, 2, NULL, NULL),
+(3, 6, NULL, NULL),
+(4, 1, NULL, NULL),
+(5, 3, NULL, NULL),
+(6, 4, NULL, NULL),
+(7, 1, NULL, NULL),
+(8, 7, NULL, NULL),
+(9, 6, NULL, NULL),
+(10, 5, NULL, NULL),
+(11, 7, NULL, NULL),
+(12, 8, NULL, NULL),
+(13, 2, NULL, NULL),
+(14, 3, NULL, NULL),
+(15, 6, NULL, NULL),
+(16, 1, NULL, NULL),
+(17, 4, NULL, NULL),
+(18, 3, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_posts`
+--
+
+CREATE TABLE `add_posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_posts`
+--
+
+INSERT INTO `add_posts` (`id`, `user_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(1, 2, 'First Post', 'This is the first post.', NULL, NULL),
+(2, 3, 'Second Post', 'This is the second post.', NULL, NULL),
+(3, 2, 'Third Post', 'This is the third post.', NULL, NULL),
+(4, 3, 'Fourth Post', 'This is the fourth post.', NULL, NULL),
+(5, 1, 'Five Post', 'This is the five post.', NULL, NULL),
+(6, 3, 'Six Post', 'This is the six post.', NULL, NULL),
+(7, 3, 'Seven Post', 'This is the seven post.', NULL, NULL),
+(8, 3, 'Eight Post', 'This is the eight post.', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_products`
+--
+
+CREATE TABLE `add_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `categories_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_products`
+--
+
+INSERT INTO `add_products` (`id`, `categories_id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Shirt', NULL, NULL),
+(2, 1, 'Shock', NULL, NULL),
+(3, 2, 'Ring', NULL, NULL),
+(4, 2, 'bracelets', NULL, NULL),
+(5, 2, 'bangle', NULL, NULL),
+(6, 3, 'Iphone', NULL, NULL),
+(7, 3, 'Sumsung', NULL, NULL),
+(8, 3, 'Nokia', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_tags`
+--
+
+CREATE TABLE `add_tags` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `post_id` bigint(20) UNSIGNED NOT NULL,
+  `tag` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_tags`
+--
+
+INSERT INTO `add_tags` (`id`, `post_id`, `tag`, `created_at`, `updated_at`) VALUES
+(1, 5, 'This is the first Tag.', NULL, NULL),
+(2, 4, 'This is the second Tag.', NULL, NULL),
+(3, 4, 'This is the third Tag.', NULL, NULL),
+(4, 8, 'This is the fourth Tag.', NULL, NULL),
+(5, 2, 'This is the five Tag.', NULL, NULL),
+(6, 7, 'This is the six Tag.', NULL, NULL),
+(7, 8, 'This is the seven Tag.', NULL, NULL),
+(8, 4, 'This is the eight Tag.', NULL, NULL),
+(9, 3, 'This is the nine Tag.', NULL, NULL),
+(10, 8, 'This is the ten Tag.', NULL, NULL),
+(11, 5, 'This is the eleven Tag.', NULL, NULL),
+(12, 1, 'This is the twelth Tag.', NULL, NULL),
+(13, 3, 'This is the thirteen Tag.', NULL, NULL),
+(14, 7, 'This is the forteen Tag.', NULL, NULL),
+(15, 2, 'This is the fifteen Tag.', NULL, NULL),
+(16, 2, 'This is the sixteen Tag.', NULL, NULL),
+(17, 6, 'This is the seventeen Tag.', NULL, NULL),
+(18, 3, 'This is the eighteen Tag.', NULL, NULL),
+(19, 2, 'This is the nineteen Tag.', NULL, NULL),
+(20, 1, 'This is the twenty Tag.', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_users`
+--
+
+CREATE TABLE `add_users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_users`
+--
+
+INSERT INTO `add_users` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES
+(1, 'Ram kumar', 'ram@example.com', NULL, NULL),
+(2, 'Raj Singh', 'raj@example.com', NULL, NULL),
+(3, 'Rohan Singh', 'rohan@example.com', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `advance_models`
+--
+
+CREATE TABLE `advance_models` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -406,6 +597,36 @@ INSERT INTO `apps_countries` (`id`, `country_code`, `country_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `caches`
+--
+
+CREATE TABLE `caches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` tinytext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `caches`
+--
+
+INSERT INTO `caches` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Mr.', 'Molestias eligendi quia officia quia reprehenderit quibusdam in. Sed laboriosam at quis unde ducimus deserunt aut. Soluta velit provident debitis ut illum quae quod.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(2, 'Prof.', 'Dolorem amet et facere porro incidunt sapiente et. Qui nisi assumenda ratione et quia quos. Explicabo sit aliquid et eos qui quibusdam sequi rerum. Rerum ullam fuga ratione. Necessitatibus totam non quasi et similique.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(3, 'Mr.', 'Natus asperiores molestias totam velit possimus. Ratione ipsam aspernatur quod enim sequi perspiciatis qui ut. Deleniti et fuga dolor occaecati deserunt. Autem qui veritatis maiores velit.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(4, 'Mrs.', 'Ipsa mollitia quas consequuntur fuga quia. Dolores ad aspernatur illo reprehenderit. Aliquam atque totam voluptates est. Explicabo enim molestiae quia est ut autem.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(5, 'Miss', 'Et non architecto ea est in officia. Temporibus fugiat assumenda commodi totam eos sit. Maxime cupiditate iste qui at. Saepe voluptas quia quo placeat aut temporibus. Nihil corrupti aut quidem repellat fuga.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(6, 'Ms.', 'Et soluta quis id molestias nostrum. Eius quis magnam maiores aut laborum quae iusto. Hic rerum odit quo maxime ullam.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(7, 'Prof.', 'Vel aut optio suscipit est voluptatem soluta. Dolorem voluptates assumenda voluptatibus aliquid quis. Qui velit et odio consequuntur tempora alias. Distinctio sit repellat aut voluptates distinctio voluptatem adipisci est. Nisi eos in nihil dolor sit.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(8, 'Dr.', 'Debitis vero enim ducimus veniam vitae dignissimos qui. Qui enim repudiandae architecto rerum doloribus veritatis praesentium. Dolorem dolorem sunt quidem impedit enim repudiandae. In corporis sit quidem doloremque.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(9, 'Dr.', 'Perferendis dolorum natus nesciunt doloremque autem et inventore. Consequatur dicta in non nihil. In soluta exercitationem ut id accusantium qui quia neque. Iusto qui totam nostrum enim. Eveniet consectetur veniam qui dolorum ea minus.', '2023-07-08 15:46:59', '2023-07-08 15:46:59'),
+(10, 'Miss', 'Inventore quo culpa optio quo aut tempora sit. Perferendis non eum aut aliquid eaque. Dolorem impedit nemo voluptas molestiae quia. Corporis omnis consequatur error quo magni non odio.', '2023-07-08 15:46:59', '2023-07-08 15:46:59');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
@@ -442,7 +663,8 @@ CREATE TABLE `checkbox_table` (
 INSERT INTO `checkbox_table` (`id`, `name`, `language`) VALUES
 (1, 'Hello', '[\"PHP\",\"LARAVEL\"]'),
 (2, 'Ram', '[\"jQUERY\",\"PYTHON\",\"JAVASCRIPT\"]'),
-(3, 'Rana', '[\"JAVA\"]');
+(3, 'Rana', '[\"JAVA\"]'),
+(4, 'Raj', '[\"PHP\",\"jQUERY\",\"LARAVEL\"]');
 
 -- --------------------------------------------------------
 
@@ -531,6 +753,9 @@ CREATE TABLE `cruds` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -540,13 +765,13 @@ CREATE TABLE `cruds` (
 -- Dumping data for table `cruds`
 --
 
-INSERT INTO `cruds` (`id`, `image`, `firstname`, `lastname`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 'watson.jpg', 'Shen', 'Watsons', NULL, '2023-01-11 12:18:53', NULL),
-(3, 'trudo.jpg', 'Justin', 'Trudo', NULL, '2022-11-29 10:09:32', NULL),
-(17, '719665616.png', 'Mohd', 'Kamran', '2022-11-27 10:58:42', '2022-11-29 12:25:46', NULL),
-(18, '752051637.png', 'Mohd', 'Ali', '2022-11-27 10:58:57', '2022-11-29 10:09:32', NULL),
-(19, '1299561167.png', 'Miss', 'Inaya', '2022-11-27 10:59:34', '2022-11-29 10:09:32', NULL),
-(20, '330211775.jpg', 'Mark', 'Henry', '2022-11-28 01:03:19', '2022-11-29 10:09:32', NULL);
+INSERT INTO `cruds` (`id`, `image`, `firstname`, `lastname`, `email`, `gender`, `phone`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'watson.jpg', 'Shen', 'Watsons', NULL, NULL, NULL, NULL, '2023-06-16 11:38:20', NULL),
+(3, 'trudo.jpg', 'Justin', 'Trudo', NULL, NULL, NULL, NULL, '2023-06-16 11:38:20', NULL),
+(17, '719665616.png', 'Mohd', 'Kamran', NULL, NULL, NULL, '2022-11-27 10:58:42', '2023-06-16 11:38:20', NULL),
+(18, '752051637.png', 'Mohd', 'Ali', NULL, NULL, NULL, '2022-11-27 10:58:57', '2023-06-16 11:38:20', NULL),
+(19, '1299561167.png', 'Miss', 'Inaya', NULL, NULL, NULL, '2022-11-27 10:59:34', '2023-06-16 11:38:20', NULL),
+(20, '330211775.jpg', 'Mark', 'Henry', NULL, NULL, NULL, '2022-11-28 01:03:19', '2023-06-16 11:38:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -593,12 +818,9 @@ CREATE TABLE `dynamic_fields` (
 --
 
 INSERT INTO `dynamic_fields` (`id`, `firstname`, `lastname`, `created_at`, `updated_at`) VALUES
-(1, 'Abul', 'Qasim', NULL, NULL),
-(2, 'Abu', 'Talib', NULL, NULL),
 (3, 'Mohd', 'Ali', NULL, NULL),
 (6, 'Mohd', 'Tarique', '2022-12-01 02:34:02', '2022-12-01 02:34:02'),
-(8, 'Ram', 'Kumar', NULL, NULL),
-(9, 'Raj', 'Yadav', NULL, NULL);
+(8, 'Ram', 'Kumar', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -615,6 +837,20 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+INSERT INTO `failed_jobs` (`id`, `uuid`, `connection`, `queue`, `payload`, `exception`, `failed_at`) VALUES
+(1, 'f9ba84b2-fb90-4dd5-95f8-6b9bb5d79820', 'database', 'default', '{\"uuid\":\"f9ba84b2-fb90-4dd5-95f8-6b9bb5d79820\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}\"}}', 'Symfony\\Component\\Mime\\Exception\\RfcComplianceException: Email \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\" does not comply with addr-spec of RFC 2822. in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\mime\\Address.php:54\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(244): Symfony\\Component\\Mime\\Address->__construct(\'Lorem ipsum dol...\', \'\')\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(108): Illuminate\\Mail\\Message->addAddresses(\'Lorem ipsum dol...\', NULL, \'To\')\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(401): Illuminate\\Mail\\Message->to(\'Lorem ipsum dol...\', NULL)\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(206): Illuminate\\Mail\\Mailable->buildRecipients(Object(Illuminate\\Mail\\Message))\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(269): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}(Object(Illuminate\\Mail\\Message))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(212): Illuminate\\Mail\\Mailer->send(Object(Illuminate\\Support\\HtmlString), Array, Object(Closure))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\Localizable.php(19): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(213): Illuminate\\Mail\\Mailable->withLocale(NULL, Object(Closure))\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(309): Illuminate\\Mail\\Mailable->send(Object(Illuminate\\Mail\\Mailer))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(253): Illuminate\\Mail\\Mailer->sendMailable(Object(App\\Mail\\AdvanceMail))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\Mailer->send(Object(App\\Mail\\AdvanceMail))\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#40 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#41 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#42 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#43 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#44 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#45 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#46 {main}', '2023-07-11 11:00:20'),
+(2, '886f054e-c649-4d6f-bc8f-281d0a4e527f', 'database', 'default', '{\"uuid\":\"886f054e-c649-4d6f-bc8f-281d0a4e527f\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:1:{i:0;a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}}\"}}', 'ErrorException: Undefined property: stdClass::$email in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php:693\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, \'Undefined prope...\', \'C:\\\\xampp\\\\htdocs...\', 693)\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(693): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, \'Undefined prope...\', \'C:\\\\xampp\\\\htdocs...\', 693)\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(585): Illuminate\\Mail\\Mailable->setAddress(Array, NULL, \'to\')\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(158): Illuminate\\Mail\\Mailable->to(Array)\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\PendingMail->fill(Object(App\\Mail\\AdvanceMail))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#40 {main}', '2023-07-11 11:02:08'),
+(3, '69c4373c-d26d-44a0-808d-5d7dad5892ea', 'database', 'default', '{\"uuid\":\"69c4373c-d26d-44a0-808d-5d7dad5892ea\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:1:{i:0;a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}}\"}}', 'ErrorException: Undefined property: stdClass::$email in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php:693\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, \'Undefined prope...\', \'C:\\\\xampp\\\\htdocs...\', 693)\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(693): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, \'Undefined prope...\', \'C:\\\\xampp\\\\htdocs...\', 693)\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(585): Illuminate\\Mail\\Mailable->setAddress(Array, NULL, \'to\')\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(158): Illuminate\\Mail\\Mailable->to(Array)\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\PendingMail->fill(Object(App\\Mail\\AdvanceMail))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#40 {main}', '2023-07-11 11:03:51'),
+(4, '8355a1e3-8aba-44b6-936d-057a2806568e', 'database', 'default', '{\"uuid\":\"8355a1e3-8aba-44b6-936d-057a2806568e\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}\"}}', 'Symfony\\Component\\Mime\\Exception\\RfcComplianceException: Email \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\" does not comply with addr-spec of RFC 2822. in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\mime\\Address.php:54\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(244): Symfony\\Component\\Mime\\Address->__construct(\'Lorem ipsum dol...\', \'\')\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(108): Illuminate\\Mail\\Message->addAddresses(\'Lorem ipsum dol...\', NULL, \'To\')\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(401): Illuminate\\Mail\\Message->to(\'Lorem ipsum dol...\', NULL)\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(206): Illuminate\\Mail\\Mailable->buildRecipients(Object(Illuminate\\Mail\\Message))\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(269): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}(Object(Illuminate\\Mail\\Message))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(212): Illuminate\\Mail\\Mailer->send(Object(Illuminate\\Support\\HtmlString), Array, Object(Closure))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\Localizable.php(19): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(213): Illuminate\\Mail\\Mailable->withLocale(NULL, Object(Closure))\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(309): Illuminate\\Mail\\Mailable->send(Object(Illuminate\\Mail\\Mailer))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(253): Illuminate\\Mail\\Mailer->sendMailable(Object(App\\Mail\\AdvanceMail))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\Mailer->send(Object(App\\Mail\\AdvanceMail))\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#40 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#41 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#42 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#43 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#44 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#45 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#46 {main}', '2023-07-11 11:10:19');
+INSERT INTO `failed_jobs` (`id`, `uuid`, `connection`, `queue`, `payload`, `exception`, `failed_at`) VALUES
+(5, '089f19be-7fff-442b-900a-55898491d054', 'database', 'default', '{\"uuid\":\"089f19be-7fff-442b-900a-55898491d054\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}\"}}', 'Symfony\\Component\\Mime\\Exception\\RfcComplianceException: Email \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\" does not comply with addr-spec of RFC 2822. in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\mime\\Address.php:54\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(244): Symfony\\Component\\Mime\\Address->__construct(\'Lorem ipsum dol...\', \'\')\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(108): Illuminate\\Mail\\Message->addAddresses(\'Lorem ipsum dol...\', NULL, \'To\')\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(401): Illuminate\\Mail\\Message->to(\'Lorem ipsum dol...\', NULL)\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(206): Illuminate\\Mail\\Mailable->buildRecipients(Object(Illuminate\\Mail\\Message))\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(269): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}(Object(Illuminate\\Mail\\Message))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(212): Illuminate\\Mail\\Mailer->send(Object(Illuminate\\Support\\HtmlString), Array, Object(Closure))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\Localizable.php(19): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(213): Illuminate\\Mail\\Mailable->withLocale(NULL, Object(Closure))\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(309): Illuminate\\Mail\\Mailable->send(Object(Illuminate\\Mail\\Mailer))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(253): Illuminate\\Mail\\Mailer->sendMailable(Object(App\\Mail\\AdvanceMail))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\Mailer->send(Object(App\\Mail\\AdvanceMail))\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#40 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#41 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#42 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#43 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#44 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#45 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#46 {main}', '2023-07-11 11:10:52'),
+(6, '2ea125d5-4420-4e6e-b979-07df1f35278a', 'database', 'default', '{\"uuid\":\"2ea125d5-4420-4e6e-b979-07df1f35278a\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}\"}}', 'Symfony\\Component\\Mime\\Exception\\RfcComplianceException: Email \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\" does not comply with addr-spec of RFC 2822. in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\mime\\Address.php:54\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(244): Symfony\\Component\\Mime\\Address->__construct(\'Lorem ipsum dol...\', \'\')\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(108): Illuminate\\Mail\\Message->addAddresses(\'Lorem ipsum dol...\', NULL, \'To\')\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(401): Illuminate\\Mail\\Message->to(\'Lorem ipsum dol...\', NULL)\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(206): Illuminate\\Mail\\Mailable->buildRecipients(Object(Illuminate\\Mail\\Message))\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(269): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}(Object(Illuminate\\Mail\\Message))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(212): Illuminate\\Mail\\Mailer->send(Object(Illuminate\\Support\\HtmlString), Array, Object(Closure))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\Localizable.php(19): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(213): Illuminate\\Mail\\Mailable->withLocale(NULL, Object(Closure))\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(309): Illuminate\\Mail\\Mailable->send(Object(Illuminate\\Mail\\Mailer))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(253): Illuminate\\Mail\\Mailer->sendMailable(Object(App\\Mail\\AdvanceMail))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\Mailer->send(Object(App\\Mail\\AdvanceMail))\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#40 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#41 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#42 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#43 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#44 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#45 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#46 {main}', '2023-07-11 11:11:50'),
+(7, 'b22f2d41-1fde-4690-8abd-d0faa5ad7a2a', 'database', 'default', '{\"uuid\":\"b22f2d41-1fde-4690-8abd-d0faa5ad7a2a\",\"displayName\":\"App\\\\Jobs\\\\AdvanceJob\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\AdvanceJob\",\"command\":\"O:19:\\\"App\\\\Jobs\\\\AdvanceJob\\\":1:{s:11:\\\"\\u0000*\\u0000sendMail\\\";a:2:{s:8:\\\"userMail\\\";s:25:\\\"qasim.cloudzurf@gmail.com\\\";s:5:\\\"title\\\";s:432:\\\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\\\";}}\"}}', 'Symfony\\Component\\Mime\\Exception\\RfcComplianceException: Email \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsa nihil reprehenderit vero veritatis optio tenetur eveniet deserunt labore laudantium beatae sed odio officia consequatur voluptate exercitationem quod aperiam, facere quos asperiores? Deleniti sapiente voluptate assumenda, minima, impedit maxime dolore repudiandae sit, maiores velit veritatis iusto? Tempore quod error minus corrupti? Aliquam magni cumque odit.\" does not comply with addr-spec of RFC 2822. in C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\mime\\Address.php:54\nStack trace:\n#0 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(244): Symfony\\Component\\Mime\\Address->__construct(\'Lorem ipsum dol...\', \'\')\n#1 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Message.php(108): Illuminate\\Mail\\Message->addAddresses(\'Lorem ipsum dol...\', NULL, \'To\')\n#2 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(401): Illuminate\\Mail\\Message->to(\'Lorem ipsum dol...\', NULL)\n#3 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(206): Illuminate\\Mail\\Mailable->buildRecipients(Object(Illuminate\\Mail\\Message))\n#4 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(269): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}(Object(Illuminate\\Mail\\Message))\n#5 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(212): Illuminate\\Mail\\Mailer->send(Object(Illuminate\\Support\\HtmlString), Array, Object(Closure))\n#6 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\Localizable.php(19): Illuminate\\Mail\\Mailable->Illuminate\\Mail\\{closure}()\n#7 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailable.php(213): Illuminate\\Mail\\Mailable->withLocale(NULL, Object(Closure))\n#8 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(309): Illuminate\\Mail\\Mailable->send(Object(Illuminate\\Mail\\Mailer))\n#9 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\Mailer.php(253): Illuminate\\Mail\\Mailer->sendMailable(Object(App\\Mail\\AdvanceMail))\n#10 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Mail\\PendingMail.php(124): Illuminate\\Mail\\Mailer->send(Object(App\\Mail\\AdvanceMail))\n#11 C:\\xampp\\htdocs\\Laravel_ajax\\app\\Jobs\\AdvanceJob.php(37): Illuminate\\Mail\\PendingMail->send(Object(App\\Mail\\AdvanceMail))\n#12 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Jobs\\AdvanceJob->handle()\n#13 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#14 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#15 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#16 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#17 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(128): Illuminate\\Container\\Container->call(Array)\n#18 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#19 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#20 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#21 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(124): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\AdvanceJob), false)\n#22 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#23 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\AdvanceJob))\n#24 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(126): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#25 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(70): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\AdvanceJob))\n#26 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(98): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#27 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(425): Illuminate\\Queue\\Jobs\\Job->fire()\n#28 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(375): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#29 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(173): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#30 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#31 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#32 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#33 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#34 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#35 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#36 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#37 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(183): Illuminate\\Container\\Container->call(Array)\n#38 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#39 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(153): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#40 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(1063): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#41 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(320): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#42 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\symfony\\console\\Application.php(174): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#43 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(102): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#44 C:\\xampp\\htdocs\\Laravel_ajax\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(155): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#45 C:\\xampp\\htdocs\\Laravel_ajax\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#46 {main}', '2023-07-11 11:12:08');
 
 -- --------------------------------------------------------
 
@@ -663,6 +899,22 @@ INSERT INTO `images` (`id`, `images`) VALUES
 (10, '1528298426.jpg'),
 (11, '246864128.jpg'),
 (12, '1084223421.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -719,7 +971,21 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2022_11_28_081902_create_dynamic_fields_table', 2),
 (14, '2022_11_28_132928_create_send_mails_table', 3),
 (15, '2022_11_29_144252_add_soft_delete_column', 4),
-(16, '2022_12_21_104548_create_download_images_table', 5);
+(16, '2022_12_21_104548_create_download_images_table', 5),
+(17, '2023_06_09_084227_create_users_otps_table', 6),
+(18, '2023_06_09_102055_add_mobile_column_to_table', 6),
+(19, '2023_06_12_170159_create_user_email_registrations_table', 7),
+(20, '2023_06_12_170234_create_user_email_verifications_table', 7),
+(22, '2023_06_16_191617_add_extra_column_to_cruds_table', 8),
+(23, '2023_07_04_170801_create_add_users_table', 9),
+(24, '2023_07_04_170830_create_add_posts_table', 9),
+(25, '2023_07_04_170848_create_add_tags_table', 9),
+(29, '2023_07_04_183813_create_add_categories_table', 10),
+(30, '2023_07_04_183829_create_add_products_table', 10),
+(31, '2023_07_04_183846_create_add_orders_table', 10),
+(32, '2023_07_08_203450_create_caches_table', 11),
+(33, '2023_07_11_121342_create_advance_models_table', 12),
+(34, '2023_07_11_124533_create_jobs_table', 12);
 
 -- --------------------------------------------------------
 
@@ -877,10 +1143,6 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `firstname`, `lastname`, `email`, `phone`, `created_at`, `updated_at`) VALUES
-(4, 'Puja', 'Yadav', 'puja@gmail.com', '9225418574', '2022-12-03 14:58:35', '2022-12-03 14:58:35'),
-(5, 'Raju', 'Gupta', 'raju@gmail.com', '8596742541', '2022-12-15 12:59:37', '2022-12-15 12:59:37'),
-(12, 'Ram', 'Kumar', 'ram@gmail.com', '9897254163', NULL, NULL),
-(13, 'Raj', 'Gupta', 'raj@gmail.com', '9514523625', NULL, NULL),
 (14, 'Rohit', 'Pandey', 'rohit@gmail.com', '9584145236', NULL, NULL),
 (15, 'Neha', 'smriti', 'neha@gmail.com', '9485742541', NULL, NULL);
 
@@ -916,6 +1178,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -927,111 +1190,225 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Prof. Izabella Pfannerstill', 'weber.afton@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hLadDEVFju', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(2, 'Heber Wehner', 'xbode@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rZVKMaojx1', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(3, 'Elwin Walker', 'leonora37@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'gSwvOM8IhL', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(4, 'Logan Monahan', 'rocio.dickens@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'efxgBGlbX5', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(5, 'Dr. Melody Larson', 'fannie64@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ZMFJyCFXGP', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(6, 'Lyric Eichmann', 'lubowitz.naomie@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'KMZoI3XfGW', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(7, 'Domenico Doyle', 'marie.heidenreich@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hF5F0NJ1A6', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(8, 'Abelardo Waters', 'tyrese01@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4JLECPUmjU', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(9, 'Lucie Marks', 'wilmer.klocko@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'JmgsB3VbwN', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(10, 'Anabel Hickle DDS', 'susana.bergstrom@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'wOAQRWGaAg', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(11, 'Dagmar Legros', 'allie58@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QIV1CFvdYQ', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(12, 'Frederique Halvorson', 'kovacek.walter@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'i9alVCtZbr', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(13, 'Abagail Thompson', 'guido.keeling@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CIsqL3mIY4', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(14, 'Katarina Wintheiser V', 'elisabeth73@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'P9LJa0FZXP', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(15, 'Camron Hessel', 'ibatz@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'psUegZizyj', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(16, 'Keshawn Senger', 'kane.denesik@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'mFxoTSMOfq', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(17, 'Florine Dickinson V', 'elisa30@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1FAz963FKA', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(18, 'Mrs. Daniela Ward PhD', 'whitney55@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5pCiTZNk4V', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(19, 'Mr. Trever Davis', 'jean.jerde@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'H8Z2F55xu7', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(20, 'Herbert Shanahan', 'lennie01@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '7EaX06JmHv', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(21, 'Howard Satterfield', 'jturner@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'roAvBfgZvF', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(22, 'Dr. Sonny Stanton', 'murray.sarina@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'GmnnUOldfx', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(23, 'Noel Franecki', 'zoila12@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Jn1B6DZ7Zm', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(24, 'Ms. Audreanne Auer', 'tcorkery@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'fDRGYhjUw3', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(25, 'Prof. Marisa Wunsch', 'heathcote.cathryn@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'N5FikwSdPW', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(26, 'Dr. Carolyn Witting', 'willy.herzog@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'VkmXwR1XPR', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(27, 'Ceasar Parisian PhD', 'hansen.cydney@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'STTr0PteKs', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(28, 'Ms. Christina Tillman DVM', 'kutch.adelia@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5DlfM8Ap5P', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(29, 'Gracie Doyle', 'hbergstrom@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'jvd8gPvknK', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(30, 'Bonnie Kilback', 'sedrick.legros@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FaYKpu4P6V', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(31, 'Oran Will', 'spinka.alessandro@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W1AtEEvqLm', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(32, 'Myrtie Barrows Sr.', 'zorn@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0wwqUDg6o0', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(33, 'Prof. Izaiah Abbott', 'toney.armstrong@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9EVWOmmLYa', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(34, 'Georgette Gerhold', 'habernathy@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Ytk1fj5ifo', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(35, 'Brannon Ondricka', 'olson.giuseppe@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W7GwiyXVfR', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(36, 'Santina Runte', 'deron70@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8LIcv1F47r', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(37, 'Ruben Schmidt', 'ricardo.muller@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'M6th83GKeW', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(38, 'Dannie Weimann', 'mcdermott.howell@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pngxnwVKLS', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(39, 'Mrs. America Koss', 'margarete.ernser@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PUqDzByk2U', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(40, 'Jany Zboncak', 'thalia.morar@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'TNdlmXZ2Fc', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(41, 'Mr. Eugene Kerluke MD', 'kyra35@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9SiYAfBy53', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(42, 'Angela Reichel', 'xbatz@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'I17Kaw6230', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(43, 'Ms. Sabrina Block', 'adolph.hayes@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 's9SDe7OyEz', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(44, 'Hardy Gerlach DDS', 'thalia.reilly@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'MJ0BD2q7Lm', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(45, 'Mrs. Marielle Barton', 'kihn.haley@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'AaQvsHnucc', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(46, 'Markus Rice', 'parisian.noemie@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'd2FS6zlxT5', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(47, 'Miss Helga Murphy Sr.', 'qeichmann@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'krdToUy1vZ', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(48, 'Misty Ullrich MD', 'josefina.hyatt@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'RJzJhyAV8b', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(49, 'Vern Cartwright V', 'mann.elenora@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'WrVdXeMLHs', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(50, 'Nico Grady', 'jovan89@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YhJTpGQnyL', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(51, 'Queen Considine', 'angelina.volkman@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'aa8BkwB6oK', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(52, 'Jolie Williamson III', 'goodwin.presley@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YSyq5sZI7Y', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(53, 'Arnoldo O\'Kon', 'americo.cronin@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FciV80SAoD', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(54, 'Clifford Trantow', 'gilberto.lehner@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'oTBhgiWa4v', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(55, 'Leonora Schmidt', 'ykertzmann@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9g2WwWOqDE', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
-(56, 'Juliet Hintz', 'melissa93@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cEyEvoYAtQ', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(57, 'Wilford Hickle', 'ecollier@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'F4MumtqK6C', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(58, 'Cesar Treutel', 'gino09@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'IOI0BOcDqQ', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(59, 'Nelle Lind', 'vandervort.isaiah@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ZvNi6txKSG', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(60, 'Hillard Dicki', 'rath.raquel@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0wZL7KUoa5', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(61, 'Eliane Brown', 'ogerlach@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'RB93p2wSCl', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(62, 'Guiseppe Hessel', 'lilian07@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zwAfXuI7ke', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(63, 'Willis Boehm', 'blick.jayne@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '89OzqgWWBD', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(64, 'Dorthy Hahn', 'hansen.fletcher@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5SgC8SLf44', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(65, 'Ms. Vesta Feeney', 'elinore25@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '87yMkolJpC', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(66, 'Ms. Adeline Lebsack V', 'cecile73@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hqH7jE5iL1', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(67, 'Burdette Carter II', 'qdare@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 's68Hqf1C6X', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(68, 'Meagan Feest', 'jschmeler@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'HFFHUvocfg', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(69, 'Brigitte Larkin', 'gusikowski.denis@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1xzLGrGt9f', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(70, 'Keira Keebler', 'armando30@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YNk2zlCCV6', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(71, 'Jalon Abshire MD', 'kiana26@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 's9mlqlgEl5', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(72, 'Theodore Lang', 'ygislason@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'gSpAqpA2PT', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(73, 'Una Kihn', 'whills@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'AvrIsLZ4ba', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(74, 'Laney Kerluke', 'laury70@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9Lvi9zmLlD', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(75, 'Dr. Agustina Reynolds', 'earlene34@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OZfS8jXukD', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(76, 'Cyrus Dickens DDS', 'pdibbert@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qAU0EdQzgw', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(77, 'Prof. Tremaine Murazik', 'torrance08@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '6njpH3IDYL', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(78, 'Brant Trantow', 'jhintz@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CGMaMj4DQm', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(79, 'Deshaun Lemke', 'adeline.hamill@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'X61dIVbbU3', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(80, 'Kaylah Hand V', 'palma.bins@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4Oav8I2460', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(81, 'Devante Swaniawski', 'beth00@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ggAMSuQccq', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(82, 'Retta Huels', 'penelope.rippin@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BfL85fHoGQ', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(83, 'Ulises Shields', 'nikko.oreilly@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BsSjIHQCuH', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(84, 'Alfonzo Schmitt MD', 'wuckert.herminio@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '6smjfhuB51', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(85, 'Prof. Cloyd Johns II', 'larson.gavin@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1I2oYCiRsy', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(86, 'Elizabeth Crooks', 'rolfson.mylene@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1VTWxepUQB', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(87, 'Solon Spencer I', 'veda92@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zyuUtIUj8m', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(88, 'Willard Abbott', 'wabbott@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'd32XSKh7QR', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(89, 'Evalyn Lowe', 'mdurgan@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '3CczhWT6ZN', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(90, 'Wilford Mueller', 'domenica28@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cn4Inqze8Y', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(91, 'Tyreek Wuckert', 'udouglas@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Vz85j9sjrn', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(92, 'Martina Jenkins', 'spencer.hudson@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'k9nBJdEFy3', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(93, 'Columbus Rolfson Sr.', 'kane.hane@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YWYxSJgWgq', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(94, 'Mollie Crona', 'hollie.feil@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'DDOnfakP18', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(95, 'Morgan Schiller', 'amos.thompson@example.net', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lNf8xZdw4e', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(96, 'Mr. Miguel Christiansen', 'huels.lee@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zE5aqw0HHv', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(97, 'Annabel White', 'carissa.luettgen@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ILE6YaJJYm', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(98, 'Wilburn Cartwright', 'gkilback@example.org', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'tQ5Xt5tmx0', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(99, 'Cleora Lowe', 'dickens.daron@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'za6HMsPP7c', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
-(100, 'Dr. Madisyn Witting II', 'zwisoky@example.com', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'aKY5WHLMkn', '2022-12-19 04:26:21', '2022-12-19 04:26:21');
+INSERT INTO `users` (`id`, `name`, `email`, `mobile_no`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Prof. Izabella Pfannerstill', 'ansaritalib9511@gmail.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hLadDEVFju', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(2, 'Heber Wehner', 'vishnugupta77150@gmail.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rZVKMaojx1', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(3, 'Elwin Walker', 'qasim.cloudzurf@gmail.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'gSwvOM8IhL', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(4, 'Logan Monahan', 'rocio.dickens@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'efxgBGlbX5', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(5, 'Dr. Melody Larson', 'fannie64@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ZMFJyCFXGP', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(6, 'Lyric Eichmann', 'lubowitz.naomie@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'KMZoI3XfGW', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(7, 'Domenico Doyle', 'marie.heidenreich@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hF5F0NJ1A6', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(8, 'Abelardo Waters', 'tyrese01@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4JLECPUmjU', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(9, 'Lucie Marks', 'wilmer.klocko@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'JmgsB3VbwN', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(10, 'Anabel Hickle DDS', 'susana.bergstrom@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'wOAQRWGaAg', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(11, 'Dagmar Legros', 'allie58@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'QIV1CFvdYQ', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(12, 'Frederique Halvorson', 'kovacek.walter@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'i9alVCtZbr', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(13, 'Abagail Thompson', 'guido.keeling@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CIsqL3mIY4', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(14, 'Katarina Wintheiser V', 'elisabeth73@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'P9LJa0FZXP', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(15, 'Camron Hessel', 'ibatz@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'psUegZizyj', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(16, 'Keshawn Senger', 'kane.denesik@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'mFxoTSMOfq', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(17, 'Florine Dickinson V', 'elisa30@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1FAz963FKA', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(18, 'Mrs. Daniela Ward PhD', 'whitney55@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5pCiTZNk4V', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(19, 'Mr. Trever Davis', 'jean.jerde@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'H8Z2F55xu7', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(20, 'Herbert Shanahan', 'lennie01@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '7EaX06JmHv', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(21, 'Howard Satterfield', 'jturner@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'roAvBfgZvF', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(22, 'Dr. Sonny Stanton', 'murray.sarina@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'GmnnUOldfx', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(23, 'Noel Franecki', 'zoila12@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Jn1B6DZ7Zm', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(24, 'Ms. Audreanne Auer', 'tcorkery@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'fDRGYhjUw3', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(25, 'Prof. Marisa Wunsch', 'heathcote.cathryn@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'N5FikwSdPW', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(26, 'Dr. Carolyn Witting', 'willy.herzog@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'VkmXwR1XPR', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(27, 'Ceasar Parisian PhD', 'hansen.cydney@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'STTr0PteKs', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(28, 'Ms. Christina Tillman DVM', 'kutch.adelia@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5DlfM8Ap5P', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(29, 'Gracie Doyle', 'hbergstrom@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'jvd8gPvknK', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(30, 'Bonnie Kilback', 'sedrick.legros@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FaYKpu4P6V', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(31, 'Oran Will', 'spinka.alessandro@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W1AtEEvqLm', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(32, 'Myrtie Barrows Sr.', 'zorn@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0wwqUDg6o0', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(33, 'Prof. Izaiah Abbott', 'toney.armstrong@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9EVWOmmLYa', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(34, 'Georgette Gerhold', 'habernathy@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Ytk1fj5ifo', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(35, 'Brannon Ondricka', 'olson.giuseppe@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'W7GwiyXVfR', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(36, 'Santina Runte', 'deron70@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8LIcv1F47r', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(37, 'Ruben Schmidt', 'ricardo.muller@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'M6th83GKeW', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(38, 'Dannie Weimann', 'mcdermott.howell@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'pngxnwVKLS', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(39, 'Mrs. America Koss', 'margarete.ernser@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PUqDzByk2U', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(40, 'Jany Zboncak', 'thalia.morar@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'TNdlmXZ2Fc', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(41, 'Mr. Eugene Kerluke MD', 'kyra35@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9SiYAfBy53', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(42, 'Angela Reichel', 'xbatz@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'I17Kaw6230', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(43, 'Ms. Sabrina Block', 'adolph.hayes@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 's9SDe7OyEz', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(44, 'Hardy Gerlach DDS', 'thalia.reilly@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'MJ0BD2q7Lm', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(45, 'Mrs. Marielle Barton', 'kihn.haley@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'AaQvsHnucc', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(46, 'Markus Rice', 'parisian.noemie@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'd2FS6zlxT5', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(47, 'Miss Helga Murphy Sr.', 'qeichmann@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'krdToUy1vZ', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(48, 'Misty Ullrich MD', 'josefina.hyatt@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'RJzJhyAV8b', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(49, 'Vern Cartwright V', 'mann.elenora@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'WrVdXeMLHs', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(50, 'Nico Grady', 'jovan89@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YhJTpGQnyL', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(51, 'Queen Considine', 'angelina.volkman@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'aa8BkwB6oK', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(52, 'Jolie Williamson III', 'goodwin.presley@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YSyq5sZI7Y', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(53, 'Arnoldo O\'Kon', 'americo.cronin@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'FciV80SAoD', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(54, 'Clifford Trantow', 'gilberto.lehner@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'oTBhgiWa4v', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(55, 'Leonora Schmidt', 'ykertzmann@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9g2WwWOqDE', '2022-12-19 04:26:20', '2022-12-19 04:26:20'),
+(56, 'Juliet Hintz', 'melissa93@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cEyEvoYAtQ', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(57, 'Wilford Hickle', 'ecollier@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'F4MumtqK6C', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(58, 'Cesar Treutel', 'gino09@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'IOI0BOcDqQ', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(59, 'Nelle Lind', 'vandervort.isaiah@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ZvNi6txKSG', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(60, 'Hillard Dicki', 'rath.raquel@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '0wZL7KUoa5', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(61, 'Eliane Brown', 'ogerlach@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'RB93p2wSCl', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(62, 'Guiseppe Hessel', 'lilian07@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zwAfXuI7ke', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(63, 'Willis Boehm', 'blick.jayne@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '89OzqgWWBD', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(64, 'Dorthy Hahn', 'hansen.fletcher@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5SgC8SLf44', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(65, 'Ms. Vesta Feeney', 'elinore25@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '87yMkolJpC', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(66, 'Ms. Adeline Lebsack V', 'cecile73@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'hqH7jE5iL1', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(67, 'Burdette Carter II', 'qdare@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 's68Hqf1C6X', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(68, 'Meagan Feest', 'jschmeler@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'HFFHUvocfg', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(69, 'Brigitte Larkin', 'gusikowski.denis@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1xzLGrGt9f', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(70, 'Keira Keebler', 'armando30@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YNk2zlCCV6', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(71, 'Jalon Abshire MD', 'kiana26@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 's9mlqlgEl5', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(72, 'Theodore Lang', 'ygislason@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'gSpAqpA2PT', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(73, 'Una Kihn', 'whills@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'AvrIsLZ4ba', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(74, 'Laney Kerluke', 'laury70@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9Lvi9zmLlD', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(75, 'Dr. Agustina Reynolds', 'earlene34@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OZfS8jXukD', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(76, 'Cyrus Dickens DDS', 'pdibbert@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qAU0EdQzgw', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(77, 'Prof. Tremaine Murazik', 'torrance08@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '6njpH3IDYL', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(78, 'Brant Trantow', 'jhintz@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CGMaMj4DQm', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(79, 'Deshaun Lemke', 'adeline.hamill@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'X61dIVbbU3', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(80, 'Kaylah Hand V', 'palma.bins@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4Oav8I2460', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(81, 'Devante Swaniawski', 'beth00@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ggAMSuQccq', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(82, 'Retta Huels', 'penelope.rippin@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BfL85fHoGQ', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(83, 'Ulises Shields', 'nikko.oreilly@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'BsSjIHQCuH', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(84, 'Alfonzo Schmitt MD', 'wuckert.herminio@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '6smjfhuB51', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(85, 'Prof. Cloyd Johns II', 'larson.gavin@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1I2oYCiRsy', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(86, 'Elizabeth Crooks', 'rolfson.mylene@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '1VTWxepUQB', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(87, 'Solon Spencer I', 'veda92@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zyuUtIUj8m', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(88, 'Willard Abbott', 'wabbott@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'd32XSKh7QR', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(89, 'Evalyn Lowe', 'mdurgan@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '3CczhWT6ZN', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(90, 'Wilford Mueller', 'domenica28@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'cn4Inqze8Y', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(91, 'Tyreek Wuckert', 'udouglas@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Vz85j9sjrn', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(92, 'Martina Jenkins', 'spencer.hudson@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'k9nBJdEFy3', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(93, 'Columbus Rolfson Sr.', 'kane.hane@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'YWYxSJgWgq', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(94, 'Mollie Crona', 'hollie.feil@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'DDOnfakP18', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(95, 'Morgan Schiller', 'amos.thompson@example.net', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'lNf8xZdw4e', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(96, 'Mr. Miguel Christiansen', 'huels.lee@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'zE5aqw0HHv', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(97, 'Annabel White', 'carissa.luettgen@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ILE6YaJJYm', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(98, 'Wilburn Cartwright', 'gkilback@example.org', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'tQ5Xt5tmx0', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(99, 'Cleora Lowe', 'dickens.daron@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'za6HMsPP7c', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(100, 'Dr. Madisyn Witting II', 'zwisoky@example.com', '', '2022-12-19 04:26:20', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'aKY5WHLMkn', '2022-12-19 04:26:21', '2022-12-19 04:26:21'),
+(101, 'Qasim', 'qasim@gmail.com', '+919795844049', '2023-06-09 14:23:42', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'G7fP6UneezISGT0KIQUDrWSPhZlz5e7NEvz9LSj88gf5IJCHFk3v3jl3jyRh', '2023-06-09 14:23:42', '2023-06-09 14:23:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_otps`
+--
+
+CREATE TABLE `users_otps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `user_otp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expire_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users_otps`
+--
+
+INSERT INTO `users_otps` (`id`, `user_id`, `user_otp`, `expire_at`, `created_at`, `updated_at`) VALUES
+(8, 101, '924006', '2023-06-10 11:35:22', '2023-06-10 11:30:42', '2023-06-10 11:35:22'),
+(9, 101, '483868', '2023-06-13 05:06:21', '2023-06-13 05:05:50', '2023-06-13 05:06:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_email_registrations`
+--
+
+CREATE TABLE `user_email_registrations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `is_verified` int(11) NOT NULL DEFAULT 0,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_email_registrations`
+--
+
+INSERT INTO `user_email_registrations` (`id`, `name`, `email`, `email_verified_at`, `is_verified`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'Qasim', 'qasim.cloudzurf@gmail.com', NULL, 1, '$2y$10$ziD2XPTZRK59fgydUWpYoe9GDionbRVZaw1.nuCDsstrUc2G7EyM6', '2023-06-13 07:16:53', '2023-06-13 07:17:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_email_verifications`
+--
+
+CREATE TABLE `user_email_verifications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `otp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_email_verifications`
+--
+
+INSERT INTO `user_email_verifications` (`id`, `email`, `otp`, `created_at`) VALUES
+(1, 'qasim.cloudzurf@gmail.com', '840731', 1686660414);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `add_categories`
+--
+ALTER TABLE `add_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `add_orders`
+--
+ALTER TABLE `add_orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `add_orders_product_id_foreign` (`product_id`);
+
+--
+-- Indexes for table `add_posts`
+--
+ALTER TABLE `add_posts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `add_posts_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `add_products`
+--
+ALTER TABLE `add_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `add_products_categories_id_foreign` (`categories_id`);
+
+--
+-- Indexes for table `add_tags`
+--
+ALTER TABLE `add_tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `add_tags_post_id_foreign` (`post_id`);
+
+--
+-- Indexes for table `add_users`
+--
+ALTER TABLE `add_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advance_models`
+--
+ALTER TABLE `advance_models`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `api_table`
@@ -1043,6 +1420,12 @@ ALTER TABLE `api_table`
 -- Indexes for table `apps_countries`
 --
 ALTER TABLE `apps_countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `caches`
+--
+ALTER TABLE `caches`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1105,6 +1488,13 @@ ALTER TABLE `hobey_table`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
 
 --
 -- Indexes for table `livetable`
@@ -1176,14 +1566,82 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `users_otps`
+--
+ALTER TABLE `users_otps`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_email_registrations`
+--
+ALTER TABLE `user_email_registrations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_email_registrations_email_unique` (`email`);
+
+--
+-- Indexes for table `user_email_verifications`
+--
+ALTER TABLE `user_email_verifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_email_verifications_email_index` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `add_categories`
+--
+ALTER TABLE `add_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `add_orders`
+--
+ALTER TABLE `add_orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `add_posts`
+--
+ALTER TABLE `add_posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `add_products`
+--
+ALTER TABLE `add_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `add_tags`
+--
+ALTER TABLE `add_tags`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `add_users`
+--
+ALTER TABLE `add_users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `advance_models`
+--
+ALTER TABLE `advance_models`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `api_table`
 --
 ALTER TABLE `api_table`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `caches`
+--
+ALTER TABLE `caches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1195,7 +1653,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `checkbox_table`
 --
 ALTER TABLE `checkbox_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `city`
@@ -1225,13 +1683,13 @@ ALTER TABLE `download_images`
 -- AUTO_INCREMENT for table `dynamic_fields`
 --
 ALTER TABLE `dynamic_fields`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `hobey_table`
@@ -1246,6 +1704,12 @@ ALTER TABLE `images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `livetable`
 --
 ALTER TABLE `livetable`
@@ -1255,7 +1719,7 @@ ALTER TABLE `livetable`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1303,7 +1767,53 @@ ALTER TABLE `tbl_register`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `users_otps`
+--
+ALTER TABLE `users_otps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `user_email_registrations`
+--
+ALTER TABLE `user_email_registrations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_email_verifications`
+--
+ALTER TABLE `user_email_verifications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `add_orders`
+--
+ALTER TABLE `add_orders`
+  ADD CONSTRAINT `add_orders_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `add_products` (`id`);
+
+--
+-- Constraints for table `add_posts`
+--
+ALTER TABLE `add_posts`
+  ADD CONSTRAINT `add_posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `add_users` (`id`);
+
+--
+-- Constraints for table `add_products`
+--
+ALTER TABLE `add_products`
+  ADD CONSTRAINT `add_products_categories_id_foreign` FOREIGN KEY (`categories_id`) REFERENCES `add_categories` (`id`);
+
+--
+-- Constraints for table `add_tags`
+--
+ALTER TABLE `add_tags`
+  ADD CONSTRAINT `add_tags_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `add_posts` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\DependentController;
-use App\Http\Controllers\LaravelBoy;
 use App\Http\Controllers\LiveTableController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserEmailController;
@@ -20,11 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Start Laravel Boy */
-Route::controller(LaravelBoy::class)->group(function () {
-    Route::get('laravelboy', 'index');
-});
-/* End Laravel Boy */
 
 Route::controller(StudentController::class)->group(function () {
     Route::get('/', 'index');
