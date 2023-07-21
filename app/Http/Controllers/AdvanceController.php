@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\AdvanceJob;
-use Illuminate\Http\Request;
 
 class AdvanceController extends Controller
 {   
@@ -13,5 +12,4 @@ class AdvanceController extends Controller
         dispatch(new AdvanceJob($userMail));
         dd('Mail Sent Successfully...');
     }
-
 }
