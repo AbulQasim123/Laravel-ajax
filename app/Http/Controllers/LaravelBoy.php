@@ -23,10 +23,10 @@ class LaravelBoy extends Controller
         // return response('Hello world')->header('userName','Qasim')->header('Country','India');
 
         // return $result;
-        // return response('Hello world')->withHeaders([
-        //     'Username' => 'Qasim',
-        //     'Country' => 'India',
-        // ]);
+        return response('Hello world')->withHeaders([
+            'Username' => 'Qasim',
+            'Country' => 'India',
+        ]);
         // $cooie = cookie('name','Qasim');
         // Cookie::expire('name');
         // return response('Hello world')->cookie($cooie);

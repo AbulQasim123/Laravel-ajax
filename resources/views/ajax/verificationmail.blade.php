@@ -59,7 +59,7 @@
                 success: function (response) {
                     $('#resendOtpVerification').text('Resend Verification OTP');
                     if(response.status == true){
-                        timer();`1
+                        timer();
                         $('#message_success').text(response.msg);
                         setTimeout(() => {
                             $('#message_success').text('');
